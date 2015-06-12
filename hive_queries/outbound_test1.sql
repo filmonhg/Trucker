@@ -10,4 +10,5 @@ INSERT OVERWRITE DIRECTORY '/hadoop_dir_my_group_draft_data/draft_output_hive'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY "\t" LINES TERMINATED BY "\n"
 SELECT origin_city, origin_state, trip, destination_city, destination_state
 FROM draft_data
+WHERE origin_state='FL'
 
