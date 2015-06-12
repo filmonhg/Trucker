@@ -20,9 +20,9 @@ def consume_save(group,topic):
 		print "Consumer didn't read any messages"
 	for message in messages:
 		tmp_save.write( message.message.value+"\n")
-		print message.message.value+"\n"
-	print "Message from topic \"%s\" consumed" % topic
-
+#		print message.message.value+"\n"
+	print ".... ... .. .."
+	print "Message from topic \"%s\" consumed \n" % topic
 #push the temporary fiele to hdfs
 def push_to_hdfs(tmp_file_path):
 	hadoop_dir="hadoop_dir_%s_%s" %(group,topic)
@@ -30,6 +30,7 @@ def push_to_hdfs(tmp_file_path):
 #	os.system("hdfs dfs -rmdir /%s_%s" % (hadoop_dir,topic))
 #	os.system("hdfs dfs -mkdir /%s" % hadoop_dir)
 	print "pushing to file \n"
+	print ".... ... .. .."
 	#os.system("touch %s" % hadoop_file_path)
 	#os.system("hdfs dfs -copyFromLocal %s /%s/%s" % (tmp_file_path,hadoop_dir,hdfs_file_name))
 	os.system("hdfs dfs -put -f %s /%s/%s" % (tmp_file_path,hadoop_dir,hdfs_file_name))
