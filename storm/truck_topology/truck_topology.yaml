@@ -1,7 +1,7 @@
-# This is a non-operational example demonstrating the use of a Kafka spout.
 #
 name: truck_topology
 #
+#workers: 3
 topology:
 
 - spout:
@@ -39,7 +39,8 @@ topology:
 - bolt:
         name: truck_bolt
         module: truck_topology.stormBolt
-#        module: truck_topology.stormBolt
         tick_freq_secs: 5.0
         groupings:
             - shuffle_grouping: kafka-spout
+            
+

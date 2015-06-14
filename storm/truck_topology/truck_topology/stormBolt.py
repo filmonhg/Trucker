@@ -1,6 +1,7 @@
-#Author: Filmon
-#storm bold program
-
+# This program creates a storm bolt that filters the incoming tuples based on occupancy
+# It stores the unoccupied cab details into HBase which are then shown on UI. The HBase
+# table is refreshed every 5 seconds using a tick tuple.
+#import logging
 from pyleus.storm import SimpleBolt
 #import happybase
 #import json
@@ -10,16 +11,16 @@ from pyleus.storm import SimpleBolt
 #minuteTbl = connection.table('avlbl_Cabs')
 
 class firstBolt(SimpleBolt):
-#    OUTPUT_FIELDS = ['cabs']
+    OUTPUT_FIELDS = ['trucks']
     
 #    def initialize(self):
 #        self.unoccCabs = {}        
 
     def process_tuple(self, tup):
         result, = tup.values
-	print result
-#        cabID, lat, lng, occ, timestamp = result.split(" ")
-        
+        #cabID, lat, lng, occ, timestamp = result.split(" ")
+        time,date,truck_type,f_p,dh_o,origin_city,origin_state,trip,destination_city,destination_state,dh_d,contact,credit,dtp,ft,klb,company,t_a,dc,factor,mkt_r,assure = result.split(",")
+#        print origin_city
 #        if (occ != '\N'): # check to ensure that there are no null values
 #            if int(occ) == 0:  
 #                self.unoccCabs[cabID] = {'c:lat':lat, 'c:lng':lng} # add unoccupied cab to table
@@ -38,5 +39,4 @@ class firstBolt(SimpleBolt):
 
 if __name__ == '__main__':
     firstBolt().run()
-
 
