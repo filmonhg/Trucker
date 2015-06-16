@@ -4,7 +4,7 @@ import os
 import sys
 from kafka import KafkaClient, SimpleConsumer
 
-domain="ec2-52-8-194-192.us-west-1.compute.amazonaws.com"
+domain="ec2-52-8-124-34.us-west-1.compute.amazonaws.com"
 group="my_group"
 #topic="outbound_sample_topic"
 #topic="thomas_topic"
@@ -23,6 +23,7 @@ def consume_save(group,topic):
 		for message in messages:
 	#		tmp_save.write( message.message.value+"\n")
 			print message.message.value+"\n"
+			kafka_consumer.commit() # inform zookeeper of position in the kafka queu
 #/hadoop_dir_outbound_sample_topic/hadoop_dirsample_file.csv
 def push_to_hdfs(tmp_file_path):
 	hadoop_dir="hadoop_dir_%s_%s" %(group,topic)
