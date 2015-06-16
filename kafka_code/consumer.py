@@ -5,7 +5,7 @@ import os
 import sys
 from kafka import KafkaClient, SimpleConsumer
 
-domain="ec2-52-8-194-192.us-west-1.compute.amazonaws.com"
+domain="ec2-52-8-124-34.us-west-1.compute.amazonaws.com"
 group="my_group"
 topic="draft_data"
 kafka=KafkaClient(domain)
