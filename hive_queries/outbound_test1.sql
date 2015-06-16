@@ -33,8 +33,8 @@ FROM (SELECT split(raw_data,",/") AS rw from staging_table) t;
 --DESCRIBE draft_data;
 
 --set year=SPLIT(day,'/')
-INSERT OVERWRITE DIRECTORY '/hadoop_dir_my_group_draft_data_hive_output/draft_output_hive'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY "\t" LINES TERMINATED BY "\n"
+--INSERT OVERWRITE DIRECTORY '/hadoop_dir_my_group_draft_data_hive_output/draft_output_hive'
+--ROW FORMAT DELIMITED FIELDS TERMINATED BY "\t" LINES TERMINATED BY "\n"
 --SELECT origin_city,trip,destination_city
 --FROM draft_data
 --SELECT origin_city, origin_state, trip, destination_city, destination_state
