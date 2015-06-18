@@ -11,6 +11,7 @@ from cqlengine.management import sync_table
 
 
 log = logging.getLogger("truckLogger")
+counter_dict = {}
 
 # Define a model
 class outbound_real_count(Model):
@@ -37,17 +38,23 @@ class firstBolt(SimpleBolt):
         log.debug(result)
         log.debug("+++++++++++fffff++++++++++++++++")
         log.debug(f)
-	c_city=str(f[7].strip())
-	c_state=str(f[8].strip())
-	c_year=str(f[3].strip())
-	c_count=str(f[9].strip())
-        log.debug(c_city)
-        log.debug(c_state)
-        log.debug(c_year)
-        log.debug(c_count)
-	outbound_real_count.create(c_city=str(f[7].strip()), c_state=str(f[8].strip()), c_year=str(f[3].strip()),c_count=str(f[9].strip()))
+	city=str(f[7].strip())
+	state=str(f[8].strip())
+	year=str(f[3].strip())
+	count=str(f[9].strip())
+        log.debug(city)
+        log.debug(state)
+        log.debug(year)
+        log.debug(count)
+	city_state=city+state
+	log.debug(city_state)
+	if city_state not in counter_dict:
+		counter_dict[city_state] =1
+	else:
+		counter_dict[city_state] +=1
+	log.debug(counter_dict[city_state])
 
-#outbound_real_count.create(c_city='Oakland', c_state='CA', c_count='10', c_year='2016')
+	outbound_real_count.create(c_city=city, c_state=state, c_count=str(counter_dict[city_state]), c_year=year)
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG,filename='/tmp/truck_topology.log',format="%(message)s",filemode='a')
 	firstBolt().run()
