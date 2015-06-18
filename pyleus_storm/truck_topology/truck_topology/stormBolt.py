@@ -17,7 +17,8 @@ counter_dict = {}
 class outbound_real_count(Model):
         c_city  = columns.Text(primary_key=True)
         c_state = columns.Text(primary_key=True)
-        c_count = columns.Text()
+        #c_count = columns.Counter()
+        c_count = columns.Integer()
         c_year = columns.Text(primary_key=True,clustering_order="DESC")
         def __repr__(self):
                 return '%s %s %s %s' % (self.c_year,self.c_city,self.c_state,self.c_count)
@@ -53,8 +54,10 @@ class firstBolt(SimpleBolt):
 	else:
 		counter_dict[city_state] +=1
 	log.debug(counter_dict[city_state])
-
-	outbound_real_count.create(c_city=city, c_state=state, c_count=str(counter_dict[city_state]), c_year=year)
+		
+	
+	outbound_real_count.create(c_city=city, c_state=state, c_count=counter_dict[city_state], c_year=year)
+#	outbound_real_count.create(c_city=city, c_state=state, str(c_count), c_year=year)
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG,filename='/tmp/truck_topology.log',format="%(message)s",filemode='a')
 	firstBolt().run()
