@@ -1,7 +1,8 @@
 import os
 import sys
+import time
 from kafka import SimpleProducer, KafkaClient,KeyedProducer
-source_file='/home/ubuntu/truckBenefitMaximaization/data_generation/big_fake_outbound.csv'
+source_file='/home/ubuntu/truckBenefitMaximaization/data_generation/test_data_simple.csv'
 kafka = KafkaClient("localhost:9092")
 #this is to create topic if it doesn't exist
 #I still have to work on to check if it already existed !!!
@@ -11,6 +12,7 @@ while True:
 	with open(source_file) as f:
 		for line in f:
 			producer.send_messages("real_time_data",line.rstrip())
+			time.sleep(0.5)
 		f.close()
 #def ProduceData(Topic):
 	# To send messages synchronously
