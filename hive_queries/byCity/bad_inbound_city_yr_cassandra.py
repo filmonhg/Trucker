@@ -11,7 +11,7 @@ from cqlengine import connection
 from cqlengine.management import sync_table
 
 # Define a model
-class outbound_city_state(Model):
+class inbound_city_state(Model):
 	c_city  = columns.Text(primary_key=True)
 	c_state = columns.Text(primary_key=True)
 	c_count = columns.Text()
@@ -19,7 +19,7 @@ class outbound_city_state(Model):
 	def __repr__(self):
 		return '%s %s %s %s' % (self.c_year,self.c_city,self.c_state,self.c_count)
 # Define a model
-class outbound_city_state_major(Model):
+class inbound_city_state_major(Model):
         c_year  = columns.Text(primary_key=True)
         c_city = columns.Text(primary_key=True)
         c_state = columns.Text(primary_key=True,clustering_order="DESC")
@@ -30,16 +30,16 @@ class outbound_city_state_major(Model):
 
 
 connection.setup(['127.0.0.1'], "outbound_cassandra")
-sync_table(outbound_city_state)
-sync_table(outbound_city_state_major)
-#outbound_city_state.create(c_city='Franklin', c_state='TN', c_count='5', c_year='2015')
+sync_table(inbound_city_state_major)
+sync_table(inbound_city_state)
+#inbound_city_state.create(c_city='Franklin', c_state='TN', c_count='5', c_year='2015')
 for line in sys.stdin:
 	f = line.split('\t')
-	outbound_city_state.create(c_state=str(f[2].strip()), c_count=str(f[3].strip()), c_year=str(f[0].strip()),c_city=str(f[1].strip()))
-#p=outbound_city_state.get(c_city='Manchester')
+	inbound_city_state.create(c_state=str(f[2].strip()), c_count=str(f[3].strip()), c_year=str(f[0].strip()),c_city=str(f[1].strip()))
+#p=inbound_city_state.get(c_city='Manchester')
 #print p
 
-major_cities = { 
+major_cities = {
 'Wichita':'KS',
 'Memphis':'TN',
 'Sacramento':'CA',
@@ -113,9 +113,10 @@ major_cities = {
 'Atlanta':'GA',
 'Miami':'FL',
 'Albuquerque':'NM',
-'San Francisco':'CA',
-}
+'San Francisco':'CA'
+}                                                  82,1          51%
 for key in major_cities:
-	q=outbound_city_state.objects(c_city=key,c_state=major_cities[key])
-	for i in q:
-		outbound_city_state_major.create(c_year=i.c_year,c_city=i.c_city,c_state=i.c_state,c_count=i.c_count)
+        q=inbound_city_state.objects(c_city=key,c_state=major_cities[key])
+        for i in q:
+                inbound_city_state_major.create(c_year=i.c_year,c_city=i.c_city,c_state=i.c_state,c_count=i.c_count)
+
