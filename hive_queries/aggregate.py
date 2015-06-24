@@ -25,6 +25,6 @@ for line in sys.stdin:
 #p=outbound_count.get(c_city='Manchester')
 #print p
 q=outbound_count.objects()
-for i in q:
-	print i
+#for i in q:
+#	print i
 
