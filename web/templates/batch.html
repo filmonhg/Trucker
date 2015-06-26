@@ -1,0 +1,206 @@
+{% extends "index.html" %}
+{% block left %}
+<script type="text/javascript" src="{{ url_for('static', filename='my_map_data.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='usmap.js') }}"></script>
+<form action="/batch" method='POST'>
+Year
+<input id='year' type="text" name="year" width="0" value="2014">
+<input type="submit" value="Submit">
+</form>
+    <h2> Inbound And Outbound Load for {{year}}</h2>
+<script>
+//This is for posting count of load for each city inbound and outbound
+var x=0;
+var j=0;
+var bf=0;
+var outbound_count=new Array();
+var inbound_count=new Array();
+ {% for post in posts %}
+outbound_count[x]='{{post.count}}';
+//bf='{{post.count}}'/500;
+x=x+1;
+{% endfor %}
+{% for post2 in posts2 %}
+inbound_count[j]='{{post2.count}}';
+j=j+1;
+{% endfor %}
+for(k=0;k<49;k++)
+{
+simplemaps_usmap_mapdata.locations[k].hide="no";
+simplemaps_usmap_mapdata.locations[k].description='Outbound: '+outbound_count[k]+' Inbound: '+inbound_count[k];
+}
+//The following is for outbound count of load for each state inbound and outbound
+{% for post in in_state %}
+if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
+{
+//alert('island');
+}
+else
+{
+//alert('{{post.state}}');
+//alert(simplemaps_usmap_mapdata.state_specific.'HI');
+simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description='{{post.count}}';
+//alert('{{post.state}}' + simplemaps_usmap_mapdata.data.data.{{post.state}});
+}
+
+{% endfor %}
+//alert(simplemaps_usmap_mapdata.data.data.TX);
+//simplemaps_usmap_mapdata.data.data.TX=100;
+</script>
+<!--
+<table>
+{% for post in in_state %}
+<tr>
+<td>{{post.state}}</td><td>{{post.year}}</td><td>{{post.count}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<table>
+{% for post in out_state %}
+<tr>
+<td>{{post.state}}</td><td>{{post.year}}</td><td>{{post.count}}</td>
+</tr>
+{% endfor %}
+</table>
+   <table>
+   <tr>
+   <td><b>City</b>&nbsp;</td><td><b>State</b>&nbsp;&nbsp;&nbsp;</td><td><b>Year</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>Count By Year</b>&nbsp;&nbsp;&nbsp;</td>
+   </tr>
+    {% for post in posts %}
+    <tr>
+<td > {{post.city}} </td><td>{{post.state}}&nbsp;&nbsp;&nbsp; </td><td>{{post.year}}&nbsp;&nbsp;&nbsp;</td> <td style="text-align:right"> {{post.count}} </td>
+</tr>
+    {% endfor %}
+</table>   
+<table>
+{% for post in posts2 %}
+    <tr>
+<td > {{post.city}} </td><td>{{post.state}}&nbsp;&nbsp;&nbsp; </td><td>{{post.year}}&nbsp;&nbsp;&nbsp;</td> <td style="text-align:right"> {{post.count}} </td>
+</tr>
+    {% endfor %}
+</table>
+ --!>
+<!-- This is for displaying the Map --!>
+<div id="map" style="width: 100%"></div>
+
+<!-- This is for displaying the key for the heat map --!>
+<!--
+<div id="key">
+                        <style type="text/css">
+                        #key{color: black; width: 500px; margin-left: 25%; font-family: arial; font-size: 14px;}
+                        #cnumber {display: inline-block; background: white; list-style: none; margin: 0px; padding: 0px;}
+                        #label {display: inline-block; list-style: none; margin: 0 0 0 50px; padding: 0px; text-align: center;}
+                                #c1 {float: left; width: 100px;  height: 20px;}
+                                #c2 {float: left; width: 100px; height: 20px;}
+                                #c3 {float: left; width: 100px;  height: 20px;}
+                                #c4 {float: left; width: 100px; height: 20px;}
+                                #c5 {float: left; width: 100px; height: 20px;}
+                                .l1 {float: left; width: 100px;}
+                        </style>
+
+                        <ul id="label">
+                                <li class="l1">1.0</li>
+                                <li class="l1">1.0</li>
+                                <li class="l1">1.0</li>
+                                <li class="l1">1.0</li>
+                        </ul>
+                        <ul id="cnumber">
+                                <li id="c1" style="background-color: rgb(128, 129, 255);"></li>
+                                <li id="c2" style="background-color: rgb(64, 66, 255);"></li>
+                                <li id="c3" style="background-color: rgb(0, 2, 255);"></li>
+                                <li id="c4" style="background-color: rgb(0, 2, 191);"></li>
+                                <li id="c5" style="background-color: rgb(0, 1, 128);"></li>
+                        </ul>
+                </div>
+
+--!>
+{% endblock %}
+{%block right %}
+
+<script>
+var s=0;
+var states=new Array();
+var inbound=new Array();
+var outbound=new Array();
+var topstates=new Array();
+var topinbound=new Array();
+var topoutbound=new Array();
+
+{% for post in in_state %}
+{% endfor %}
+{% for post in in_state %}
+if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
+{
+//alert('island');
+}
+else
+{
+	states[s]='{{post.state}}';
+	inbound[s]='{{post.count}}'/10000;
+	s=s+1;
+}
+{% endfor %}
+//alert(inbound[0]);
+s=0;
+{% for post in out_state %}
+if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
+{
+//alert('island');
+}
+else
+{
+        //states[s]='{{post.state}}';
+        outbound[s]='{{post.count}}'/10000;
+        s=s+1;
+}
+{% endfor %}
+//alert(outbound[0]);
+var temp;
+var temp2;
+for(i=states.length;i>=0;i--)
+{
+	for(j=0;j<i;j++)
+	{
+		if(inbound[j]<inbound[j+1])
+		{
+			tmp=inbound[j];
+			inbound[j]=inbound[j+1];
+			inbound[j+1]=tmp;
+			tmp=states[j];
+			states[j]=states[j+1];
+			states[j+1]=tmp;
+		}
+	}
+}
+
+for(i=states.length;i>=0;i--)
+{
+	for(j=0;j<i;j++)
+	{
+		if(outbound[j]<outbound[j+1])
+		{
+			tmp=outbound[j];
+			outbound[j]=outbound[j+1];
+			outbound[j+1]=tmp;
+		}
+	}
+}
+
+
+for(i=0;i<10;i++)
+{
+topstates[i]=states[i];
+topinbound[i]=inbound[i];
+topoutbound[i]=outbound[i];
+}	
+//alert (states);
+//alert (inbound[0]);
+</script>
+
+<div id="container" style="width:70%; height:500px;"></div> 
+<script> var hichart_data = {{ clicks_data  }} </script> 
+<script src= "../static/js/mychart.js"></script> 
+{% endblock %}
+ %   {% for post in posts %}
+ %   {% endfor %}

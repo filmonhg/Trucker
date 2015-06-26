@@ -1,0 +1,27 @@
+<html>
+  <head>
+<script type="text/JavaScript">
+<!--
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+//   -->
+</script>
+    {% if title %}
+    <title>{{ title }} - microblog</title>
+    {% else %}
+    <title>Welcome to microblog</title>
+    {% endif %}
+<script type="text/javascript" src="{{ url_for('static', filename='mapdata1.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='usmap.js') }}"></script>
+
+  <h1> Trucker </h1>
+  </head>
+  <body>
+<body onload="JavaScript:timedRefresh(10000);">
+<div id="map" style="width: 100%"></div>
+    <div><a href="/realtime">Real Time Processing</a>&nbsp&nbsp<a href="/batch">Batch Processing</a>&nbsp</div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>

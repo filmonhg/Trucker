@@ -1,0 +1,22 @@
+<html>
+  <head>
+<script type="text/JavaScript">
+<!--
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+//   -->
+</script>
+    {% if title %}
+    <title>{{ title }} - microblog</title>
+    {% else %}
+    <title>Welcome to microblog</title>
+    {% endif %}
+  </head>
+  <body>
+<body>
+    <div onload="JavaScript:timedRefresh(1000);">Links: <a href="/index">Real Time Processing</a>&nbsp&nbsp<a href="/batch">Batch Processing</a>&nbsp</div>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>

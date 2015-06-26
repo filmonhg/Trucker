@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>USA Map Example</title>
+<script type="text/javascript" src="{{ url_for('static', filename='mapdata1.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='usmap.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='sample.js') }}"></script>
+    </head>
+	<body>
+		<div>
+			<h1>HTML5/JavaScript USA Map</h1>
+			<div id="map" style="width: 100%"></div>
+			<div>Please read the <a href="http://simplemaps.com/docs">documentation</a> to learn how to customize this map.</div>
+		</div>
+	<script> simplemaps_usmap_mapdata.locations[0].name="Franklin"; </script>
+	<script> simplemaps_usmap_mapdata.locations[2].name="Asmara";simplemaps_usmap_mapdata.locations[2].lat= 40.71;simplemaps_usmap_mapdata.locations[2].lng=-74.00; </script>
+	<script> alert(simplemaps_usmap_mapdata.locations[0].name); </script>
+	{% for post in posts %}
+<table>
+<tr>
+<td> {{post.city}} </td><td>{{post.state}} </td> <td> {{post.count}} </td>
+</tr>
+</table>
+	<script> alert(({{post.count}}).toString()); </script>
+	<script> simplemaps_usmap_mapdata.locations[2].description={{post.count}};simplemaps_usmap_mapdata.locations[2].lat= 40.71;simplemaps_usmap_mapdata.locations[2].lng=-74.00; </script>
+    {% endfor %}
+
+	</body>
+</html>
+      
+    
+
