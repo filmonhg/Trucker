@@ -11,7 +11,16 @@
 <td> {{post.city}} </td><td>{{post.state}} </td> <td> {{post.count}} </td>
 </tr>
     {% endfor %}
-</table>    
+</table>  
+{{posts}} 
+<table>
+{% for post in state_posts %}
+<tr>
+<td>{{post.state}}</td><td>{{post.month_day}}</td><td>{{post.count}}</td>
+</tr>
+
+{% endfor %}
+</table> 
 <div id="map" style="width: 100%"></div>
 
 {% endblock %}

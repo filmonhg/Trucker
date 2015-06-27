@@ -30,11 +30,14 @@ class CassieUtilities(object):
          
 
     def fetch_state_by_year(self, table,year):
-        #record_lookup_stmt = "SELECT * FROM {}".format(table)
         record_lookup_stmt = "SELECT * FROM {} WHERE c_year=%s".format(table)
   	record_list=[]
-	#i=0 
-	#while(i<10):     
         record_list = self.session.execute(record_lookup_stmt, [year])
-	#	i+=1
+        return record_list
+
+
+    def fetch_state_realtime(self, table):
+        record_lookup_stmt = "SELECT * FROM {}".format(table)
+  	record_list=[]
+        record_list = self.session.execute(record_lookup_stmt)
         return record_list

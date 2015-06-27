@@ -10,14 +10,7 @@ app = Flask(__name__)
 CUtils = CassieUtilities('52.8.124.34')
 @app.route('/index')
 def index():
-    user = {'nickname': 'Real Time Processing'}  # fake user
-    result_outbound = CUtils.fetch_daterange(table='outbound_real_count')
-    response = []
-    for res in result_outbound:
-        response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
-    return render_template("realtime.html",
-				user=user,
-                                posts=response
+    return render_template("refer.html",
 				); 
 @app.route('/realtime')
 def realtime():
@@ -25,11 +18,18 @@ def realtime():
     result_outbound = CUtils.fetch_daterange(table='outbound_real_count')
     response = []
     for res in result_outbound:
-        response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]}) 
+        response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
+ 
+    result_outbound_state = CUtils.fetch_daterange(table='outbound_real_count_state')
+    response_state = []
+    print response_state
+    for res in result_outbound_state:
+        response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
     return render_template("realtime.html",
 				title='Real Time',
 				user=user,
-				posts=response
+				posts=response,
+				state_posts=response_state
 				);
 
 @app.route('/batch')
