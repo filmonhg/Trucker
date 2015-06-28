@@ -2,6 +2,7 @@
 #Consumer kafka code
 import os
 import sys
+import time
 from kafka import KafkaClient, SimpleConsumer
 
 domain="ec2-52-8-124-34.us-west-1.compute.amazonaws.com"
@@ -14,22 +15,26 @@ topic="real_time_data_inbound"
 kafka=KafkaClient(domain)
 tmp_file_path="/tmp/kafka_%s_%s.csv" % (topic, group)
 def consume_save(group,topic):
-#	tmp_save=open(tmp_file_path,"w")
+	i=0
+	tmp_save=open(tmp_file_path,"w")
 	while True:
 		kafka_consumer=SimpleConsumer(kafka,group,topic)
 		messages= kafka_consumer.get_messages(count=1000, block=False)
-		if not messages:
-			print "Consumer didn't read any messages"
+#		if not messages:
+#			print "Consumer didn't read any messages"
 		for message in messages:
-	#		tmp_save.write( message.message.value+"\n")
+			tmp_save.write( message.message.value+"\n")
 			print message.message.value+"\n"
-			kafka_consumer.commit() # inform zookeeper of position in the kafka queu
+		# file size > 20MB
+                if tmp_save.tell() > 200000:
+                    push_to_hdfs(tmp_file_path)
+		kafka_consumer.commit() # inform zookeeper of position in the kafka queu
 #/hadoop_dir_outbound_sample_topic/hadoop_dirsample_file.csv
 def push_to_hdfs(tmp_file_path):
 	hadoop_dir="hadoop_dir_%s_%s" %(group,topic)
-	hdfs_file_name="hdfs_file.txt"
-#	os.system("hdfs dfs -rmdir /%s_%s" % (hadoop_dir,topic))
-	os.system("hdfs dfs -mkdir /%s" % hadoop_dir)
+	hdfs_file_name="hdfs_inbound_file"+str(time.strftime("%I_%M_%p_%m_%d_%Y"))+".txt"
+	#os.system("hdfs dfs -rmdir /%s_%s" % (hadoop_dir,topic))
+	#os.system("hdfs dfs -mkdir /%s" % hadoop_dir)
 	print "pushing to file \n"
 	#os.system("touch %s" % hadoop_file_path)
 	os.system("hdfs dfs -copyFromLocal %s /%s/%s" % (tmp_file_path,hadoop_dir,hdfs_file_name))
