@@ -605,7 +605,7 @@ state_specific:{
 		lat: 35.0844444,
 		lng: -106.6505556,
 		type: 'circle',
-		hide: 'no'
+		hide: 'yes'
 },
 1: { 
 		name: 'Arlington,TX',
