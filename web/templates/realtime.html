@@ -12,15 +12,46 @@
 </tr>
     {% endfor %}
 </table>  
-{{posts}} 
 <table>
-{% for post in state_posts %}
+{% for post in in_state_posts %}
 <tr>
 <td>{{post.state}}</td><td>{{post.month_day}}</td><td>{{post.count}}</td>
 </tr>
 
 {% endfor %}
 </table> 
+<script>
+{% for post in state_posts %}
+if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
+{
+//alert('island');
+}
+else
+{
+simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description='Outbound: {{post.count}}';
+}
+{% endfor %}
+</script>
+
+
+<script>
+{% for post in in_state_posts %}
+if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
+{
+//alert('island');
+}
+else
+{
+simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description=simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description +' Inbound: {{post.count}}';
+}
+{% endfor %}
+</script>
+
+
+
+
+
+
 <div id="map" style="width: 100%"></div>
 
 {% endblock %}

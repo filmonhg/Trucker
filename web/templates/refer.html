@@ -1,0 +1,26 @@
+<html>
+<head>
+<script type="text/javascript"
+    src="../static/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='my_map_data.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='usmap.js') }}"></script>
+
+<script>
+    $(document).ready(
+            function() {
+                setInterval(function() {
+                    $('#show').load("http://ec2-52-8-117-81.us-west-1.compute.amazonaws.com:5000/realtime")
+                
+                }, 5000);
+            });
+</script>
+
+</head>
+
+<body>
+
+<div id="show">
+
+</div>
+</body>
+</html>

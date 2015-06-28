@@ -43,7 +43,7 @@ main_settings:{
 state_specific:{ 
 	'HI': { 
 		name: 'Hawaii',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -53,7 +53,7 @@ state_specific:{
 	},
 	'AK': { 
 		name: 'Alaska',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -63,7 +63,7 @@ state_specific:{
 	},
 	'FL': { 
 		name: 'Florida',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -73,7 +73,7 @@ state_specific:{
 	},
 	'NH': { 
 		name: 'New Hampshire',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -83,7 +83,7 @@ state_specific:{
 	},
 	'VT': { 
 		name: 'Vermont',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -93,7 +93,7 @@ state_specific:{
 	},
 	'ME': { 
 		name: 'Maine',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -103,7 +103,7 @@ state_specific:{
 	},
 	'RI': { 
 		name: 'Rhode Island',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -113,7 +113,7 @@ state_specific:{
 	},
 	'NY': { 
 		name: 'New York',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -123,7 +123,7 @@ state_specific:{
 	},
 	'PA': { 
 		name: 'Pennsylvania',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -133,7 +133,7 @@ state_specific:{
 	},
 	'NJ': { 
 		name: 'New Jersey',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -143,7 +143,7 @@ state_specific:{
 	},
 	'DE': { 
 		name: 'Delaware',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -153,7 +153,7 @@ state_specific:{
 	},
 	'MD': { 
 		name: 'Maryland',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -163,7 +163,7 @@ state_specific:{
 	},
 	'VA': { 
 		name: 'Virginia',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -173,7 +173,7 @@ state_specific:{
 	},
 	'WV': { 
 		name: 'West Virginia',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -183,7 +183,7 @@ state_specific:{
 	},
 	'OH': { 
 		name: 'Ohio',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -193,7 +193,7 @@ state_specific:{
 	},
 	'IN': { 
 		name: 'Indiana',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -203,7 +203,7 @@ state_specific:{
 	},
 	'IL': { 
 		name: 'Illinois',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -213,7 +213,7 @@ state_specific:{
 	},
 	'CT': { 
 		name: 'Connecticut',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -223,7 +223,7 @@ state_specific:{
 	},
 	'WI': { 
 		name: 'Wisconsin',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -233,7 +233,7 @@ state_specific:{
 	},
 	'NC': { 
 		name: 'North Carolina',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -243,7 +243,7 @@ state_specific:{
 	},
 	'DC': { 
 		name: 'District of Columbia',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -253,7 +253,7 @@ state_specific:{
 	},
 	'MA': { 
 		name: 'Massachusetts',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -263,7 +263,7 @@ state_specific:{
 	},
 	'TN': { 
 		name: 'Tennessee',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -273,7 +273,7 @@ state_specific:{
 	},
 	'AR': { 
 		name: 'Arkansas',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -283,7 +283,7 @@ state_specific:{
 	},
 	'MO': { 
 		name: 'Missouri',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -293,7 +293,7 @@ state_specific:{
 	},
 	'GA': { 
 		name: 'Georgia',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -303,7 +303,7 @@ state_specific:{
 	},
 	'SC': { 
 		name: 'South Carolina',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -313,7 +313,7 @@ state_specific:{
 	},
 	'KY': { 
 		name: 'Kentucky',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -323,7 +323,7 @@ state_specific:{
 	},
 	'AL': { 
 		name: 'Alabama',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -333,7 +333,7 @@ state_specific:{
 	},
 	'LA': { 
 		name: 'Louisiana',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -343,7 +343,7 @@ state_specific:{
 	},
 	'MS': { 
 		name: 'Mississippi',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -353,7 +353,7 @@ state_specific:{
 	},
 	'IA': { 
 		name: 'Iowa',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -363,7 +363,7 @@ state_specific:{
 	},
 	'MN': { 
 		name: 'Minnesota',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -373,7 +373,7 @@ state_specific:{
 	},
 	'OK': { 
 		name: 'Oklahoma',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -383,7 +383,7 @@ state_specific:{
 	},
 	'TX': { 
 		name: 'Texas',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -393,7 +393,7 @@ state_specific:{
 	},
 	'NM': { 
 		name: 'New Mexico',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -403,7 +403,7 @@ state_specific:{
 	},
 	'KS': { 
 		name: 'Kansas',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -413,7 +413,7 @@ state_specific:{
 	},
 	'NE': { 
 		name: 'Nebraska',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -423,7 +423,7 @@ state_specific:{
 	},
 	'SD': { 
 		name: 'South Dakota',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -433,7 +433,7 @@ state_specific:{
 	},
 	'ND': { 
 		name: 'North Dakota',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -443,7 +443,7 @@ state_specific:{
 	},
 	'WY': { 
 		name: 'Wyoming',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -453,7 +453,7 @@ state_specific:{
 	},
 	'MT': { 
 		name: 'Montana',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -463,7 +463,7 @@ state_specific:{
 	},
 	'CO': { 
 		name: 'Colorado',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -473,7 +473,7 @@ state_specific:{
 	},
 	'UT': { 
 		name: 'Utah',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -483,7 +483,7 @@ state_specific:{
 	},
 	'AZ': { 
 		name: 'Arizona',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -493,7 +493,7 @@ state_specific:{
 	},
 	'NV': { 
 		name: 'Nevada',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -503,7 +503,7 @@ state_specific:{
 	},
 	'OR': { 
 		name: 'Oregon',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -513,7 +513,7 @@ state_specific:{
 	},
 	'WA': { 
 		name: 'Washington',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -523,7 +523,7 @@ state_specific:{
 	},
 	'CA': { 
 		name: 'California',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -533,7 +533,7 @@ state_specific:{
 	},
 	'MI': { 
 		name: 'Michigan',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -543,7 +543,7 @@ state_specific:{
 	},
 	'ID': { 
 		name: 'Idaho',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -553,7 +553,7 @@ state_specific:{
 	},
 	'GU': { 
 		name: 'Guam',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -563,7 +563,7 @@ state_specific:{
 	},
 	'VI': { 
 		name: 'Virgin Islands',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -573,7 +573,7 @@ state_specific:{
 	},
 	'PR': { 
 		name: 'Puerto Rico',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',
@@ -583,7 +583,7 @@ state_specific:{
 	},
 	'MP': { 
 		name: 'Northern Mariana Islands',
-		description: '',
+		description: '1',
 		color: '#8081ff',
 		hover_color: 'default',
 		url: 'default',

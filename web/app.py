@@ -19,17 +19,28 @@ def realtime():
     response = []
     for res in result_outbound:
         response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
+
+    result_inbound = CUtils.fetch_daterange(table='inbound_real_count')
+    in_response = []
+    for res in result_inbound:
+        in_response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
  
     result_outbound_state = CUtils.fetch_daterange(table='outbound_real_count_state')
     response_state = []
-    print response_state
     for res in result_outbound_state:
         response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
+    
+    result_inbound_state = CUtils.fetch_daterange(table='inbound_real_count_state')
+    in_response_state = []
+    for res in result_inbound_state:
+        in_response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
     return render_template("realtime.html",
 				title='Real Time',
 				user=user,
 				posts=response,
-				state_posts=response_state
+				state_posts=response_state,
+				in_posts=in_response,
+				in_state_posts=in_response_state
 				);
 
 @app.route('/batch')
