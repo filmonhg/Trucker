@@ -8,13 +8,24 @@ class CassieUtilities(object):
         self.session = cluster.connect()
         self.session.set_keyspace(keyspace)
 
-    def fetch_daterange(self, table):
+    def fetch_daterange_state(self, table):
         #record_lookup_stmt = "SELECT * FROM {}".format(table)
         record_lookup_stmt = "SELECT * FROM {}".format(table)
   	record_list=[]
 	#i=0 
 	#while(i<10):     
         record_list = self.session.execute(record_lookup_stmt)
+	#	i+=1
+        return record_list
+
+    def fetch_daterange(self, table,city,state):
+        #record_lookup_stmt = "SELECT * FROM {}".format(table)
+        record_lookup_stmt = "SELECT * FROM {} WHERE c_city=%s AND c_state=%s".format(table)
+  	record_list=[]
+	#i=0 
+	#while(i<10):     
+        record_list = self.session.execute(record_lookup_stmt, [city,
+								state])
 	#	i+=1
         return record_list
 
@@ -40,4 +51,10 @@ class CassieUtilities(object):
         record_lookup_stmt = "SELECT * FROM {}".format(table)
   	record_list=[]
         record_list = self.session.execute(record_lookup_stmt)
+        return record_list
+
+    def fetch_lat_lng(self, table,city,state):
+        record_lookup_stmt = "SELECT * FROM {} WHERE c_city=%s AND c_state=%s".format(table)
+  	record_list=[]
+        record_list = self.session.execute(record_lookup_stmt, [city,state])
         return record_list

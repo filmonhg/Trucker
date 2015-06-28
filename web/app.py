@@ -15,33 +15,96 @@ def index():
 @app.route('/realtime')
 def realtime():
     user = {'nickname': 'Real Time Processing'}  # fake user
-    result_outbound = CUtils.fetch_daterange(table='outbound_real_count')
+    city='Lake City'
+    state='FL'
+    result_outbound = CUtils.fetch_daterange(table='outbound_real_count',city=city,state=state)
     response = []
     for res in result_outbound:
         response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
 
-    result_inbound = CUtils.fetch_daterange(table='inbound_real_count')
+    result_inbound = CUtils.fetch_daterange(table='inbound_real_count',city=city,state=state)
     in_response = []
     for res in result_inbound:
         in_response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
  
-    result_outbound_state = CUtils.fetch_daterange(table='outbound_real_count_state')
+#    result_outbound = CUtils.fetch_daterange(table='outbound_real_count')
+#    response = []
+#    for res in result_outbound:
+#        response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
+
+#    result_inbound = CUtils.fetch_daterange(table='inbound_real_count')
+#    in_response = []
+#    for res in result_inbound:
+#        in_response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
+ 
+    result_outbound_state = CUtils.fetch_daterange_state(table='outbound_real_count_state')
     response_state = []
     for res in result_outbound_state:
         response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
     
-    result_inbound_state = CUtils.fetch_daterange(table='inbound_real_count_state')
+    result_inbound_state = CUtils.fetch_daterange_state(table='inbound_real_count_state')
     in_response_state = []
     for res in result_inbound_state:
         in_response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
+    result_lat_lng = CUtils.fetch_lat_lng(table='city_state_lat_lng',city=city,state=state)
+    in_result_lat_lng = []
+    for res in result_lat_lng:
+	in_result_lat_lng.append({'city' : res[0], 'state' : res[1], 'lat':res[2],'lng':res[3]})
     return render_template("realtime.html",
 				title='Real Time',
 				user=user,
 				posts=response,
 				state_posts=response_state,
 				in_posts=in_response,
-				in_state_posts=in_response_state
+				in_state_posts=in_response_state,
+				in_lat_lng=in_result_lat_lng
 				);
+
+
+
+@app.route('/realtime', methods=['POST'])
+def realtime_post():
+    city = request.form['city']
+    state= request.form['state']
+    user = {'nickname': 'Real Time Processing'}  # fake user
+    result_outbound = CUtils.fetch_daterange(table='outbound_real_count',city=city,state=state)
+    response = []
+    for res in result_outbound:
+        response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
+
+    result_inbound = CUtils.fetch_daterange(table='inbound_real_count',city=city,state=state)
+    in_response = []
+    for res in result_inbound:
+        in_response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
+ 
+    result_outbound_state = CUtils.fetch_daterange_state(table='outbound_real_count_state')
+    response_state = []
+    for res in result_outbound_state:
+        response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
+    
+    result_inbound_state = CUtils.fetch_daterange_state(table='inbound_real_count_state')
+    in_response_state = []
+    for res in result_inbound_state:
+        in_response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
+
+
+    result_lat_lng = CUtils.fetch_lat_lng(table='city_state_lat_lng',city=city,state=state)
+    in_result_lat_lng = []
+    for res in result_lat_lng:
+	in_result_lat_lng.append({'city' : res[0], 'state' : res[1], 'lat':res[2],'lng':res[3]})
+    return render_template("realtime.html",
+				title='Real Time',
+				user=user,
+				posts=response,
+				state_posts=response_state,
+				in_posts=in_response,
+				in_state_posts=in_response_state,
+				city=city,
+				state=state,
+				in_lat_lng=in_result_lat_lng
+				);
+
+
 
 @app.route('/batch')
 def batch():

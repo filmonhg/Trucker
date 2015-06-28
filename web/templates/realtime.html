@@ -3,6 +3,26 @@
 <script type="text/javascript" src="{{ url_for('static', filename='my_map_data.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='usmap.js') }}"></script>  
   <h2> {{ user.nickname }}</h2>
+<form action="/realtime" method='POST'>
+City
+<input id='city' type="text" name="city" width="0">
+State
+<input id='state' type="text" name="state" width="0">
+<input type="submit" value="Submit">
+</form>
+
+{{city}}
+{{state}}
+{{in_lat_lng}}
+<script type="text/javascript">
+var cno=50;
+simplemaps_usmap_mapdata.locations[51]={};
+simplemaps_usmap_mapdata.locations[51].lat='{{in_lat_lng[0].lat}}';
+simplemaps_usmap_mapdata.locations[51].lng='{{in_lat_lng[0].lng}}';
+simplemaps_usmap_mapdata.locations[51].name='{{in_lat_lng[0].city}}';
+simplemaps_usmap_mapdata.locations[51].hide="no";
+simplemaps_usmap_mapdata.locations[51].description='Outbound: '+'{{posts[0].count}}'+'Inbound: '+'{{in_posts[0].count}}';
+</script>
 
    <table onload="JavaScript:timedRefresh(500);">
 <td><b>City</b>&nbsp;</td><td><b>State</b>&nbsp;&nbsp;&nbsp;</td><td><b>Count By Year</b>&nbsp;&nbsp;&nbsp;</td>
@@ -52,7 +72,8 @@ simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description=simplemaps
 
 
 
-<div id="map" style="width: 100%"></div>
+
+<div id="map" style="width: 100%"></div> 
 
 {% endblock %}
 {%block right %}
