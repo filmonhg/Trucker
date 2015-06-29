@@ -15,8 +15,13 @@ def index():
 @app.route('/realtime')
 def realtime():
     user = {'nickname': 'Real Time Inbound And Outbound Load'}  # fake user
-    city='Lake City'
-    state='FL'
+    
+    city ='San Francisco'
+    state='CA'
+    if not city:
+    	city ='San Francisco'
+    if not state:
+    	state='CA'
     result_outbound = CUtils.fetch_daterange(table='outbound_real_count',city=city,state=state)
     response = []
     for res in result_outbound:
@@ -66,6 +71,7 @@ def realtime():
 def realtime_post():
     city = request.form['city']
     state= request.form['state']
+    
     if not city:
     	city ='San Francisco'
     if not state:
@@ -90,7 +96,6 @@ def realtime_post():
     in_response_state = []
     for res in result_inbound_state:
         in_response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
-
 
     result_lat_lng = CUtils.fetch_lat_lng(table='city_state_lat_lng',city=city,state=state)
     in_result_lat_lng = []
