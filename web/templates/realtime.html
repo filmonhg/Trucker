@@ -10,10 +10,6 @@ State
 <input id='state' type="text" name="state" width="0">
 <input type="submit" value="Submit">
 </form>
-
-{{city}}
-{{state}}
-{{in_lat_lng}}
 <script type="text/javascript">
 var cno=50;
 simplemaps_usmap_mapdata.locations[51]={};
@@ -23,7 +19,7 @@ simplemaps_usmap_mapdata.locations[51].name='{{in_lat_lng[0].city}}';
 simplemaps_usmap_mapdata.locations[51].hide="no";
 simplemaps_usmap_mapdata.locations[51].description='Outbound: '+'{{posts[0].count}}'+'Inbound: '+'{{in_posts[0].count}}';
 </script>
-
+<!--
    <table onload="JavaScript:timedRefresh(500);">
 <td><b>City</b>&nbsp;</td><td><b>State</b>&nbsp;&nbsp;&nbsp;</td><td><b>Count By Year</b>&nbsp;&nbsp;&nbsp;</td>
     {% for post in posts %}
@@ -39,7 +35,8 @@ simplemaps_usmap_mapdata.locations[51].description='Outbound: '+'{{posts[0].coun
 </tr>
 
 {% endfor %}
-</table> 
+</table>
+--!> 
 <script>
 {% for post in state_posts %}
 if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
@@ -79,6 +76,3 @@ simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description=simplemaps
 {%block right %}
 
 {% endblock %}
- %   {% for post in posts %}
- %   <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
- %   {% endfor %}

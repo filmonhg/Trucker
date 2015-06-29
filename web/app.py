@@ -14,7 +14,7 @@ def index():
 				); 
 @app.route('/realtime')
 def realtime():
-    user = {'nickname': 'Real Time Processing'}  # fake user
+    user = {'nickname': 'Real Time Inbound And Outbound Load'}  # fake user
     city='Lake City'
     state='FL'
     result_outbound = CUtils.fetch_daterange(table='outbound_real_count',city=city,state=state)
@@ -22,7 +22,7 @@ def realtime():
     for res in result_outbound:
         response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
 
-    result_inbound = CUtils.fetch_daterange(table='inbound_real_count',city=city,state=state)
+    result_inbound = CUtils.fetch_daterange(table='new_inbound_real_count',city=city,state=state)
     in_response = []
     for res in result_inbound:
         in_response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
@@ -42,7 +42,7 @@ def realtime():
     for res in result_outbound_state:
         response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
     
-    result_inbound_state = CUtils.fetch_daterange_state(table='inbound_real_count_state')
+    result_inbound_state = CUtils.fetch_daterange_state(table='new_inbound_real_count_state')
     in_response_state = []
     for res in result_inbound_state:
         in_response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
@@ -66,13 +66,17 @@ def realtime():
 def realtime_post():
     city = request.form['city']
     state= request.form['state']
-    user = {'nickname': 'Real Time Processing'}  # fake user
+    if not city:
+    	city ='San Francisco'
+    if not state:
+    	state='CA'
+    user = {'nickname': 'Real Time Outbound And Inbound Load'}  # fake user
     result_outbound = CUtils.fetch_daterange(table='outbound_real_count',city=city,state=state)
     response = []
     for res in result_outbound:
         response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
 
-    result_inbound = CUtils.fetch_daterange(table='inbound_real_count',city=city,state=state)
+    result_inbound = CUtils.fetch_daterange(table='new_inbound_real_count',city=city,state=state)
     in_response = []
     for res in result_inbound:
         in_response.append({'city': res[0], 'state' : res[1], 'year' : res[2], 'count':res[3]})
@@ -82,7 +86,7 @@ def realtime_post():
     for res in result_outbound_state:
         response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
     
-    result_inbound_state = CUtils.fetch_daterange_state(table='inbound_real_count_state')
+    result_inbound_state = CUtils.fetch_daterange_state(table='new_inbound_real_count_state')
     in_response_state = []
     for res in result_inbound_state:
         in_response_state.append({'state' : res[0], 'month_day' : res[1], 'count':res[2]}) 
