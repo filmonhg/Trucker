@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # This program creates a storm bolt that filters the incoming tuples based on occupancy
-# It stores the unoccupied cab details into HBase which are then shown on UI. The HBase
-# table is refreshed every 5 seconds using a tick tuple.
 import logging
 from pyleus.storm import SimpleBolt
 from cqlengine import columns
@@ -19,10 +17,10 @@ class inbound_real_count(Model):
         c_city  = columns.Text(primary_key=True)
         c_state = columns.Text(primary_key=True)
         #c_count = columns.Counter()
-        c_count = columns.Integer()
         c_month_day = columns.Text(primary_key=True,clustering_order="DESC")
+        c_count = columns.Integer()
         def __repr__(self):
-                return '%s %s %s %s' % (self.c_month_day,self.c_city,self.c_state,self.c_count)
+                return '%s %s %s %s' % (self.c_city,self.c_state,c_month_day,self.c_count)
 
 # Define a model
 class inbound_real_count_state(Model):
@@ -30,7 +28,7 @@ class inbound_real_count_state(Model):
         c_month_day = columns.Text(primary_key=True,clustering_order="DESC")
         c_count = columns.Integer()
         def __repr__(self):
-                return '%s %s %s %s' % (self.c_state,self.c_month_day,self.c_count)
+                return '%s %s %s' % (self.c_state,self.c_month_day,self.c_count)
 
 connection.setup(['127.0.0.1'], "outbound_cassandra")
 sync_table(inbound_real_count)
@@ -52,10 +50,8 @@ class firstBolt(SimpleBolt):
 	state=str(f[11].strip())
 	day=str(f[2].strip())
 	month=str(f[1].strip())
-	count=str(f[9].strip())
         log.debug(city)
         log.debug(state)
-        log.debug(count)
 	city_state=city+state
 	month_day=month+day
         log.debug(month_day)
@@ -72,7 +68,7 @@ class firstBolt(SimpleBolt):
 	else:
 		counter_dict_state[state] +=1
 	
-	inbound_real_count.create(c_city=city, c_state=state, c_count=counter_dict[city_state], c_month_day=month_day)
+	inbound_real_count.create(c_city=city, c_state=state, c_month_day=month_day,c_count=counter_dict[city_state])
 	inbound_real_count_state.create(c_state=state,c_month_day=month_day, c_count=counter_dict_state[state])
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG,filename='/tmp/truck_topology.log',format="%(message)s",filemode='a')

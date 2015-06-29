@@ -19,10 +19,10 @@ class outbound_real_count(Model):
         c_city  = columns.Text(primary_key=True)
         c_state = columns.Text(primary_key=True)
         #c_count = columns.Counter()
-        c_count = columns.Integer()
         c_month_day = columns.Text(primary_key=True,clustering_order="DESC")
+        c_count = columns.Integer()
         def __repr__(self):
-                return '%s %s %s %s' % (self.c_month_day,self.c_city,self.c_state,self.c_count)
+                return '%s %s %s %s' % (self.c_city,self.c_state,self.c_month_day,self.c_count)
 
 # Define a model
 class outbound_real_count_state(Model):
@@ -30,7 +30,7 @@ class outbound_real_count_state(Model):
         c_month_day = columns.Text(primary_key=True,clustering_order="DESC")
         c_count = columns.Integer()
         def __repr__(self):
-                return '%s %s %s %s' % (self.c_state,self.c_month_day,self.c_count)
+                return '%s %s %s' % (self.c_state,self.c_month_day,self.c_count)
 
 connection.setup(['127.0.0.1'], "outbound_cassandra")
 sync_table(outbound_real_count)
@@ -52,10 +52,8 @@ class firstBolt(SimpleBolt):
 	state=str(f[8].strip())
 	day=str(f[2].strip())
 	month=str(f[1].strip())
-	count=str(f[9].strip())
         log.debug(city)
         log.debug(state)
-        log.debug(count)
 	city_state=city+state
 	month_day=month+day
         log.debug(month_day)
@@ -72,7 +70,7 @@ class firstBolt(SimpleBolt):
 	else:
 		counter_dict_state[state] +=1
 	
-	outbound_real_count.create(c_city=city, c_state=state, c_count=counter_dict[city_state], c_month_day=month_day)
+	outbound_real_count.create(c_city=city, c_state=state,c_month_day=month_day, c_count=counter_dict[city_state])
 	outbound_real_count_state.create(c_state=state,c_month_day=month_day, c_count=counter_dict_state[state])
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG,filename='/tmp/truck_topology.log',format="%(message)s",filemode='a')
