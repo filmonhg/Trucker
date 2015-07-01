@@ -55,11 +55,17 @@ Batch Tables
 4. inbound_city_state_major c_city (PK), (c_state,c_year(Partition key)), c_count
 5. inbound_state c_year (PK), (c_state(Partition key)), c_count
 6. outbound_state c_year (PK), (c_state(Partition key)), c_count
+
 Real Time Tables
+
 1. outbound_real_count c_city(PK),c_state,c__month_day_year (Partition key), c_count
 2. inbound_real_count c_city(PK),c_state,c__month_day_year (Partition key), c_count
 3. inbound_real_count_state c_city(PK),c_state,c__month_day_year (Partition key), c_count
 4. outbound_real_count_state c_state(PK), c_month_day_year (Partition key), c_count
 
 
-## 4. API
+## 4. Startup Protocol
+1. Kafka Server
+2. Storm Streaming (Submit topologies to name node)
+3. HDFS kafka consumer 
+4. Kafka message producer
