@@ -50,8 +50,7 @@ Primary key and partition key are chosen in such a way that maximizes the effici
 Batch Tables
 
 1. outbound_city_state c_city (PK), (c_state,c_year(Partition key)), c_count
-
-2. outbound_city_state_major c_city (PK), (c_state,c_year(Partition key)), c_count
+2. outbound_city_state_major c_city (PK), (c_state,c_year(Partition key)),c_count
 3. inbound_city_state c_city (PK), (c_state,c_year(Partition key)), c_count
 4. inbound_city_state_major c_city (PK), (c_state,c_year(Partition key)), c_count
 5. inbound_state c_year (PK), (c_state(Partition key)), c_count
