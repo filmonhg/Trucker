@@ -35,13 +35,13 @@ Two sources of data (Inbound and Outbound) was generated that looks like the fol
 ![Outbound data] (img/outbound_data.png)
 * Time stamp is randomized over period of 10 years (2004 - 2014)
 * Random choice of cities was made for source and destination, where the randomization was biased to the major cities (for cities with population of 6000+,![http://www.city-data.com/] (http://www.city-data.com/)). Source of all cities obtained from [!All_cities](http://www.gaslampmedia.com/wp-content/uploads/2013/08/zip_codes_states.csv ) that has 42742 cities.
-* To get mile (distance) between cities, longitude and latitude of each city was used to approximate the distance using Vincenty distance method which gives fairly similar distance provided by google API. This is mainly due to limitation of google API calls not being able to generate huge amount of data in short time.
-* then run python code from shell script to generate the fake data as big as you want them
+* To get mile (distance) between cities, latitude and longitude of each city was used to approximate the distance using Vincenty distance method which gives fairly similar distance provided by google API. This is mainly due to limitation of google API calls that limit you to generate huge amount of data in short time.
+* Running multiple random data generation script easily allow you to generate huge inbound and outbound data in short time.
 
 #Data Ingestion
-
+csv messages were produced and consumed by python scrpts using kafka-python package from https://github.com/mumrah/kafka-python.git. messages were published to two topics (inbound and outbound) with Storm streaming and HDFS acting as consumers. Messages were blockd into 20MB size micro batches and then pushing it to HDFS making it available for the batch layer when performing complete recomputation.
 #Batch Processing
-
+Batch processing computes count of inbound and outbound trucks for each city and state yearly using historical data from 2004  - 2014. 
 #Real-Time Processing
 
 #Cassandra Schema
