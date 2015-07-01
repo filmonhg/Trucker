@@ -1,9 +1,13 @@
 # Trucker
-----------
+========================================
 *Documentation is work in progress ...*
+
 Truck Transport Benefit Tracker
+-------------------------------
 [www.truckers.solutions] (http://www.truckers.solutions/)
+
 Table of Contents:
+-------------------
 1. [Introduction] (README.md#1- Introduction)
 2. [How it Works] (README.md#2- How it works)
 3. [Architecture] (README.md#3- Architecture)
