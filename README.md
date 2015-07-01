@@ -46,8 +46,11 @@ Batch processing performs count of inbound and outbound trucks for each city and
 There are two topologies (for inbound and outbound) for processing real-time data each comprising of a kafka-spout and a bolt (with tick interval frequency of 5 sec). The spout takes data from Kafka in real time and the bolt takes from spout and process it prior to writing it to Cassandra. Pyleus-storm driver from (https://github.com/Yelp/pyleus) was used on top of Apache storm to allow python implementation.
 #Cassandra Schema
 Primary key and partition key are chosen in such a way that maximizes the efficient acccess of tuple from Cassandra
+
 Batch Tables
+
 1. outbound_city_state c_city (PK), (c_state,c_year(Partition key)), c_count
+
 2. outbound_city_state_major c_city (PK), (c_state,c_year(Partition key)), c_count
 3. inbound_city_state c_city (PK), (c_state,c_year(Partition key)), c_count
 4. inbound_city_state_major c_city (PK), (c_state,c_year(Partition key)), c_count
