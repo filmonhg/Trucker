@@ -15,7 +15,8 @@ Trucker is a tool for tracking track transport system all over US cities to allo
 
 ## 2. How it Works
 Trucker uses two sources of data namely inbound data(For trucks/load coming to a city)  and outbound data(for trucks/load going to a city) for both histrical and real time data. For historical, it uses ~200GB of data for years from 2004 to 2014. Real time data is processed in real time to reflect the status directly to user while at the same time pushing the data in micro-batches to the batch layer.
-![Trucker Demo] (https://www.youtube.com/watch?v=T2laLdZ9gTg&spfreload=10)
+
+[Trucker Demo] (https://www.youtube.com/watch?v=T2laLdZ9gTg&spfreload=10)
 
 
 ## 4. DATA SOURCE
