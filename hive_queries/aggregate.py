@@ -1,3 +1,5 @@
+#Author Filmon 
+#Python script to write to cassandra 
 #!/usr/bin/python
 #import os, cql, sys
 import os, sys
