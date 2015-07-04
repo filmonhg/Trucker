@@ -2,7 +2,7 @@
 #Toplogy for inbound with one spout and bolt
 name: truck_topology_inbound
 #
-workers: 1
+workers: 3
 topology:
 
 - spout:
@@ -15,11 +15,7 @@ topology:
             # ZooKeeper connection string. Comma-separated list of ZooKeeper
             # servers.
             # Required.
-            #zk_hosts: 172.31.14.68:2181
             zk_hosts: ec2-52-8-124-34.us-west-1.compute.amazonaws.com:2181,ec2-52-8-135-31.us-west-1.compute.amazonaws.com:2181,ec2-52-8-143-0.us-west-1.compute.amazonaws.com:2181,ec2-52-8-120-247.us-west-1.compute.amazonaws.com:2181
-
-
-            # 172.31.6.220:2181, 172.31.6.221:2181
 
             # Root path in ZooKeeper to store consumer offsets.
             # Defaults to: /pyleus-kafka-offsets/<topology name>

@@ -1,5 +1,5 @@
 #Author Filmon 
-#Real time inbound data producer
+#Real time inbound data producer sending it to spout of Storm
 import os
 import sys
 import time
@@ -16,10 +16,5 @@ while True:
 			producer.send_messages("real_time_data_inbound",line.rstrip())
 			time.sleep(0.5)
 		f.close()
-#def ProduceData(Topic):
-	# To send messages synchronously
-	# Note that the application is responsible for encoding messages to type str
-#producer.send_messages("filmon_test_topic3", "some message creating topic")
-#
 
 

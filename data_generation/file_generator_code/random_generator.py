@@ -1,3 +1,5 @@
+#Author: Filmon
+#Script for randomly generating (sythesized data)
 import random
 import time
 
@@ -49,4 +51,3 @@ trip= int((vincenty(origin_long_lat,destination_long_lat).miles))
 if(origin != destination):
 	print "\""+my_time+"\","+"\""+my_date+"\","+"\""+truckType(random.randint(1,7))+"\","+"\""+"F"+"\","+"\""+" "+"\","+"\""+origin+"\","+"\""+str(trip)+"\","+"\""+destination+"\","+"\""+" "+"\","+"\""+"(111) 111-1111"+"\","+"\""+str(random.randint(80,100))+"\","+"\""+str(random.randint(30,40))+"\","+"\""+" "+"\","+"\""+str(random.randint(10,45))+"\","+"\""+"Company XXX"+"\","+"\""+" "+"\","+"\""+" "+"\","+"\""+" "+"\","+"\""+"R"+"\","+"\""+"A"+"\""
 
-#print "\""+my_time+"\","+"\""+my_date+"\","+"\""+truckType(random.randint(1,7))+"\","+"\""+"F"+"\","+"\""+" "+"\","+"\""+random.choice(open("complete_city.csv").readlines()).strip()+"\","+"\""+str(random.randint(100,2000))+"\","+"\""+random.choice(open("complete_city.csv").readlines()).strip()+"\","+"\""+" "+"\","+"\""+"(111) 111-1111"+"\","+"\""+str(random.randint(80,100))+"\","+"\""+str(random.randint(30,40))+"\","+"\""+" "+"\","+"\""+str(random.randint(10,45))+"\","+"\""+"Company XXX"+"\","+"\""+" "+"\","+"\""+" "+"\","+"\""+" "+"\","+"\""+"R"+"\","+"\""+"A"+"\""

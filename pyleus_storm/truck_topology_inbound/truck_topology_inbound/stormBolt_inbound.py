@@ -1,7 +1,10 @@
+#Author: Filmon
 #!/usr/bin/python
-# This program creates a storm bolt that filters the incoming tuples based on occupancy
-# It stores the unoccupied cab details into HBase which are then shown on UI. The HBase
-# table is refreshed every 5 seconds using a tick tuple.
+#This program is the bolt where the real time count of inbound cities is executed
+#The counts are updated to cassandra in real time
+# table is refreshed every 5 seconds using a tick tuple as set in the topology
+
+#importing libraries 
 import logging
 from pyleus.storm import SimpleBolt
 from cqlengine import columns
@@ -10,11 +13,11 @@ from cqlengine import connection
 from cqlengine.management import sync_table
 
 
-log = logging.getLogger("truckLogger")
+log = logging.getLogger("truckLogger") #log for debugging purposes
 counter_dict = {}
 counter_dict_state = {}
 
-# Define a model
+# Define a model (table by city,state)
 class new_inbound_real_count(Model):
         c_city  = columns.Text(primary_key=True)
         c_state = columns.Text(primary_key=True)
@@ -24,7 +27,7 @@ class new_inbound_real_count(Model):
         def __repr__(self):
                 return '%s %s %s %s' % (self.c_city,self.c_state,self.c_month_day,self.c_count)
 
-# Define a model
+# Define a model (table by state)
 class new_inbound_real_count_state(Model):
         c_state = columns.Text(primary_key=True)
         c_month_day = columns.Text(primary_key=True,clustering_order="DESC")
@@ -35,29 +38,27 @@ class new_inbound_real_count_state(Model):
 connection.setup(['127.0.0.1'], "outbound_cassandra")
 sync_table(new_inbound_real_count)
 sync_table(new_inbound_real_count_state)
+
 class firstBolt(SimpleBolt):
     OUTPUT_FIELDS = ['trucks']
     
-#    def initialize(self):
-#        self.unoccCabs = {}        
-
     def process_tuple(self, tup):
         result, = tup.values
 	f = result.split(',')
-        log.debug("+++++++++++result++++++++++++++++")
-        log.debug(result)
-        log.debug("+++++++++++fffff++++++++++++++++")
-        log.debug(f)
+#        log.debug("+++++++++++result++++++++++++++++")
+#        log.debug(result)
+#        log.debug("+++++++++++fffff++++++++++++++++")
+#        log.debug(f)
 	city=str(f[10].strip())
 	state=str(f[11].strip())
 	day=str(f[2].strip())
 	month=str(f[1].strip())
-        log.debug(city)
-        log.debug(state)
+#        log.debug(city)
+#        log.debug(state)
 	city_state=city+state
 	month_day=month+day
-        log.debug(month_day)
-	log.debug(city_state)
+#        log.debug(month_day)
+#	log.debug(city_state)
 	if city_state not in counter_dict:
 		counter_dict[city_state] =1
 	else:
@@ -72,6 +73,7 @@ class firstBolt(SimpleBolt):
 	
 	new_inbound_real_count.create(c_city=city, c_state=state,c_month_day=month_day, c_count=counter_dict[city_state])
 	new_inbound_real_count_state.create(c_state=state,c_month_day=month_day, c_count=counter_dict_state[state])
+
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.DEBUG,filename='/tmp/truck_topology.log',format="%(message)s",filemode='a')
 	firstBolt().run()

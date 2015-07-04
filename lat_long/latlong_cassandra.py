@@ -1,3 +1,6 @@
+#Author: Filmon
+#Script for pushing lat long table directly to Cassandra
+#This is to make it easy for front end to map each city in the map
 #!/usr/bin/python
 from cqlengine import columns
 from cqlengine.models import Model

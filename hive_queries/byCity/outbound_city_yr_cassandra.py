@@ -1,10 +1,9 @@
+#Author: Filmon
+#Program to push outbound city state hive tables to Cassandra
 #!/usr/bin/python
-#This will push the table to cassandra
 
-#import os, cql, sys
+#import libraries
 import os, sys
-#from time import strftime
-#from datetime import datetime
 from cqlengine import columns
 from cqlengine.models import Model
 from cqlengine import connection
@@ -32,12 +31,12 @@ class outbound_city_state_major(Model):
 connection.setup(['127.0.0.1'], "outbound_cassandra")
 sync_table(outbound_city_state)
 sync_table(outbound_city_state_major)
-#outbound_city_state.create(c_city='Franklin', c_state='TN', c_count='5', c_year='2015')
+
+#pushing it to oubdound_city_state table in Cassandra 
+#making it ready for searching at front end by City and state
 for line in sys.stdin:
 	f = line.split('\t')
 	outbound_city_state.create(c_state=str(f[2].strip()), c_count=str(f[3].strip()), c_year=str(f[0].strip()),c_city=str(f[1].strip()))
-#p=outbound_city_state.get(c_city='Manchester')
-#print p
 
 major_cities = { 
 'Wichita':'KS',
@@ -115,6 +114,7 @@ major_cities = {
 'Albuquerque':'NM',
 'San Francisco':'CA',
 }
+#creating separate table for major cities to make it easy for the map on UI
 for key in major_cities:
 	q=outbound_city_state.objects(c_city=key,c_state=major_cities[key])
 	for i in q:

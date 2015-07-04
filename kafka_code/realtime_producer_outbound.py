@@ -1,3 +1,5 @@
+#Author: Filmon
+#Real time kafka producer for outbound, sending it to Storm spout for outbound
 import os
 import sys
 import time
@@ -12,12 +14,7 @@ while True:
 	with open(source_file) as f:
 		for line in f:
 			producer.send_messages("real_time_data_outbound",line.rstrip())
-			time.sleep(0.5)
+			time.sleep(0.5) 
 		f.close()
-#def ProduceData(Topic):
-	# To send messages synchronously
-	# Note that the application is responsible for encoding messages to type str
-#producer.send_messages("filmon_test_topic3", "some message creating topic")
-#
 
 
