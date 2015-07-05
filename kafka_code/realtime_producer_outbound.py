@@ -4,7 +4,7 @@ import os
 import sys
 import time
 from kafka import SimpleProducer, KafkaClient,KeyedProducer
-source_file='/home/ubuntu/Trucker/data_generation/outbound_today.csv'
+source_file='/home/ubuntu/Trucker/file_generator_code/outbound_today.csv'
 kafka = KafkaClient("localhost:9092")
 #this is to create topic if it doesn't exist
 #I still have to work on to check if it already existed !!!

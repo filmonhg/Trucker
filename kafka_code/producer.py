@@ -6,7 +6,7 @@ import os
 import sys
 from kafka import SimpleProducer, KafkaClient,KeyedProducer
 
-source_file='/home/ubuntu/truckBenefitMaximaization/data_generation/test_data_simple.csv'
+source_file='/home/ubuntu/Trucker/file_generator_code/test_data_simple.csv'
 topic="draft_data"
 kafka = KafkaClient("localhost:9092")
 #this is to create topic if it doesn't exist
