@@ -11,33 +11,12 @@ State
 <input type="submit" value="Submit">
 </form>
 <script type="text/javascript">
-var cno=50;
 simplemaps_usmap_mapdata.locations[51]={};
 simplemaps_usmap_mapdata.locations[51].lat='{{in_lat_lng[0].lat}}';
 simplemaps_usmap_mapdata.locations[51].lng='{{in_lat_lng[0].lng}}';
 simplemaps_usmap_mapdata.locations[51].name='{{in_lat_lng[0].city}}';
 simplemaps_usmap_mapdata.locations[51].hide="no";
 simplemaps_usmap_mapdata.locations[51].description='Outbound: '+'{{posts[0].count}}'+'Inbound: '+'{{in_posts[0].count}}';
-</script>
-<!--
-   <table onload="JavaScript:timedRefresh(500);">
-<td><b>City</b>&nbsp;</td><td><b>State</b>&nbsp;&nbsp;&nbsp;</td><td><b>Count By Year</b>&nbsp;&nbsp;&nbsp;</td>
-    {% for post in posts %}
-    <tr>
-<td> {{post.city}} </td><td>{{post.state}} </td> <td> {{post.count}} </td>
-</tr>
-    {% endfor %}
-</table>  
-<table>
-{% for post in in_state_posts %}
-<tr>
-<td>{{post.state}}</td><td>{{post.month_day}}</td><td>{{post.count}}</td>
-</tr>
-
-{% endfor %}
-</table>
---!> 
-<script>
 {% for post in state_posts %}
 if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
 {
@@ -48,10 +27,6 @@ else
 simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description='Outbound: {{post.count}}';
 }
 {% endfor %}
-</script>
-
-
-<script>
 {% for post in in_state_posts %}
 if(('{{post.state}}'=='AS')  || ('{{post.state}}'=='MH') || ('{{post.state}}'=='PW'))
 {
@@ -63,12 +38,6 @@ simplemaps_usmap_mapdata.state_specific['{{post.state}}'].description=simplemaps
 }
 {% endfor %}
 </script>
-
-
-
-
-
-
 
 <div id="map" style="width: 100%"></div> 
 

@@ -32,7 +32,7 @@ main_settings:{
 		popup_nocss: 'no',
 		initial_zoom: '-1',
 		initial_zoom_solo: 'no',
-		all_states_zoomable: 'no',
+		all_states_zoomable: 'yes',
 		auto_load: 'yes',
 		zoom: 'yes',
 		js_hooks: 'no',

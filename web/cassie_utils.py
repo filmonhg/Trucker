@@ -1,3 +1,5 @@
+#Author: Filmon
+#Class for querying from Cassandra
 from cassandra.cluster import Cluster
 from datetime import datetime, timedelta
 
@@ -9,34 +11,22 @@ class CassieUtilities(object):
         self.session.set_keyspace(keyspace)
 
     def fetch_daterange_state(self, table):
-        #record_lookup_stmt = "SELECT * FROM {}".format(table)
         record_lookup_stmt = "SELECT * FROM {}".format(table)
   	record_list=[]
-	#i=0 
-	#while(i<10):     
         record_list = self.session.execute(record_lookup_stmt)
-	#	i+=1
         return record_list
 
     def fetch_daterange(self, table,city,state):
-        #record_lookup_stmt = "SELECT * FROM {}".format(table)
         record_lookup_stmt = "SELECT * FROM {} WHERE c_city=%s AND c_state=%s".format(table)
   	record_list=[]
-	#i=0 
-	#while(i<10):     
         record_list = self.session.execute(record_lookup_stmt, [city,
 								state])
-	#	i+=1
         return record_list
 
     def fetch_major_by_year(self, table,year):
-        #record_lookup_stmt = "SELECT * FROM {}".format(table)
         record_lookup_stmt = "SELECT * FROM {} WHERE c_year=%s".format(table)
   	record_list=[]
-	#i=0 
-	#while(i<10):     
         record_list = self.session.execute(record_lookup_stmt, [year])
-	#	i+=1
         return record_list
          
 
